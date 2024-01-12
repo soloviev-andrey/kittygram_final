@@ -1,35 +1,45 @@
 version: '3'
 
 volumes:
-  pg_data:
+  pg_data_pro:
   static:
   media:
 
 services:
   db:
     image: postgres:13.10
+    restart: always
     env_file: .env
     volumes:
-      - pg_data:/var/lib/postgresql/data
+      - pg_data_pro:/var/lib/postgresql/data
+
   backend:
     image: anxiaolong1103/kittygram_backend
+    restart: always
     env_file: .env
     volumes:
       - static:/backend_static
-      - media:/app/media/
-    depends_on: 
+      - media:/media
+    depends_on:
       - db
+
   frontend:
-    image: anxiaolong1103/kittygram_frontend
     env_file: .env
+    image: anxiaolong1103/kittygram_frontend
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
+    depends_on:
+      - backend
+    
   gateway:
     image: anxiaolong1103/kittygram_gateway
+    restart: always
     env_file: .env
     volumes:
-      - static:/static/
-      - media:/app/media/
+      - static:/static
+      - media:/media
     ports:
-      - 9000:80
+      - ${NGINX_PORT}:${HTTP_PORT}
+    depends_on:
+      - frontend

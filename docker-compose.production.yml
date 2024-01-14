@@ -10,26 +10,29 @@ services:
     image: postgres:13.10
     env_file: .env
     volumes:
-      - pg_data_production:/var/lib/postgresql/data
+      - pg_data:/var/lib/postgresql/data
   backend:
     image: anxiaolong1103/kittygram_backend
     env_file: .env
+    depends_on:
+      - db
     volumes:
       - static:/backend_static
-      - media:/media
-    depends_on:
-      - db_kittygram
+      - media:/app/media/
   frontend:
-    image: anxiaolong1103/kittygram_frontend
     env_file: .env
-    command: cp -r /app/build/. /frontend_static/
+    image: anxiaolong1103/kittygram_frontend
+    command: cp -r /app/build/. /static/
     volumes:
-      - static:/frontend_static
+      - static:/static
   gateway:
     image: anxiaolong1103/kittygram_gateway
     env_file: .env
-    volumes:
-      - static:/staticfiles
-      - media:/media
     ports:
       - 9000:80
+    volumes:
+      - static:/static
+      - media:/media/
+    depends_on:
+      - frontend
+      - backend

@@ -145,5 +145,8 @@ dmypy.json
 
 .mypy_cache
 
+# папки со статикой и медиа
+media/
+
 # Others
 node_modules

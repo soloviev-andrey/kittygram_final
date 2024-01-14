@@ -1,6 +1,7 @@
-.env
-venv
+env
+.venv
 .git
 db.sqlite3
-idea
-.vscode
+db.sqlite3.bak
+.idea
+.env

@@ -41,20 +41,20 @@ Taski - это инновационное приложение для управ
 ## Как запустить проект:
 1. Клонировать репозиторий и перейти в него в командной строке:
 ```bash
-git clone git@github\.com:soloviev\-andrey/kittygram\_final\.git
-cd kittygram\_final
+git clone git@github.com:soloviev-andrey/kittygram_final.git
+cd kittygram_final
 ```
 2. Создать файл .env для хранения ключей:
 ```bash
-SECRET\_KEY\='указать секретный ключ'
-ALLOWED\_HOSTS\='указать имя или IP хоста'
-POSTGRES\_DB\=kittygram
-POSTGRES\_USER\=kittygram\_user
-POSTGRES\_PASSWORD\=kittygram\_password
-DB\_NAME\=kittygram
-DB\_HOST\=db
-DB\_PORT\=5432
-DEBUG\=False
+SECRET_KEY='указать секретный ключ'
+ALLOWED_HOSTS='указать имя или IP хоста'
+POSTGRES_DB=kittygram
+POSTGRES_USER=kittygram_user
+POSTGRES_PASSWORD=kittygram_password
+DB_NAME=kittygram
+DB_HOST=db
+DB_PORT=5432
+DEBUG=False
 ```
 3. Запустить docker-compose.production:
 ```bash
